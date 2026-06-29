@@ -18,9 +18,10 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Reemplaza el bloque de CORSMiddleware viejo por este:
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
+    allow_origin_regex=r"https://.*\.vercel\.app|http://localhost:\d+",  # Permite cualquier subdominio de Vercel y localhosts
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
